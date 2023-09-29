@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.8.1",
+    "@supabase/auth-helpers-react": "^0.4.2",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
@@ -23,6 +25,7 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
+    "supabase": "^1.99.5",
     "tailwindcss": "latest",
     "typescript": "latest"
   }
