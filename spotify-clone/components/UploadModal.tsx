@@ -28,6 +28,13 @@ const UploadModal = () => {
     },
   });
 
+  const onChange = (open: boolean) => {
+    if (!open) {
+      reset();
+      uploadModal.onClose();
+    }
+  };
+
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
       setIsLoading(true);
@@ -93,13 +100,6 @@ const UploadModal = () => {
       toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const onChange = (open: boolean) => {
-    if (!open) {
-      reset();
-      uploadModal.onClose();
     }
   };
 
