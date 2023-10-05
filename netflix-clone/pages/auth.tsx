@@ -6,11 +6,13 @@ import { signIn } from 'next-auth/react';
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const { data: user } = useCurrentUser();
 
   const [variant, setVariant] = useState('login');
 
@@ -34,15 +36,21 @@ const Auth = () => {
 
   const register = useCallback(async () => {
     try {
-      await axios.post('/api/register', {
-        email,
-        name,
-        password,
-      });
-
-      login();
+      {
+        await axios.post('/api/register', {
+          email,
+          name,
+          password,
+        });
+      }
     } catch (error) {
       console.log(error);
+    } finally {
+      try {
+        login();
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, [email, name, password, login]);
 
